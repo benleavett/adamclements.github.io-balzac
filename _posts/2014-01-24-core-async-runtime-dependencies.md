@@ -24,6 +24,36 @@ My initial solution was to set `ioc-macros` to `^{:skip-aot true}` in the namesp
 (ignore-me-if-aotd)
 ```
 
+```clojure
+(defmacro ignore-me-if-aotd [] 
+  (require '[clojure.tools.analyzer :as an]
+           '[clojure.tools.analyzer.ast :as ast]
+           '[clojure.tools.analyzer.jvm :as an-jvm])
+  nil)
+
+(ignore-me-if-aotd)
+```
+
+~~~clojure
+(defmacro ignore-me-if-aotd [] 
+  (require '[clojure.tools.analyzer :as an]
+           '[clojure.tools.analyzer.ast :as ast]
+           '[clojure.tools.analyzer.jvm :as an-jvm])
+  nil)
+
+(ignore-me-if-aotd)
+~~~
+
+~~~clj
+(defmacro ignore-me-if-aotd [] 
+  (require '[clojure.tools.analyzer :as an]
+           '[clojure.tools.analyzer.ast :as ast]
+           '[clojure.tools.analyzer.jvm :as an-jvm])
+  nil)
+
+(ignore-me-if-aotd)
+~~~
+
 And this did the trick. The code compiles no problem and doesn't even generate class files for tools.analyzer and its transitive dependencies.
 
 # Issues
