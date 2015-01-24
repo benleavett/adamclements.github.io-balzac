@@ -18,7 +18,7 @@ The reason it loads is that Clojure doesn't have any separation between runtime 
 My initial solution was to set `ioc-macros` to `^{:skip-aot true}` in the namespace form, but its dependencies on tools.analyzer were still loading. Then I tried moving the require to compile time so that it wouldn't resolve at run time at all:
 
 
-```clj 
+{% highlight clojure %}
 (defmacro ignore-me-if-aotd [] 
   (require '[clojure.tools.analyzer :as an]
            '[clojure.tools.analyzer.ast :as ast]
@@ -26,7 +26,7 @@ My initial solution was to set `ioc-macros` to `^{:skip-aot true}` in the namesp
   nil)
 
 (ignore-me-if-aotd)
-```
+{% endhighlight %}
 
 And this did the trick. The code compiles and runs without loading the tools.analyzer namespaces. As an added benefit, it doesn't even generate class files for tools.analyzer and its transitive dependencies, cutting down on package size.
 
