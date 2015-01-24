@@ -28,14 +28,11 @@ links:
     url: https://github.com/AdamClements/
     external: true
 
-rouge: true
-encoding: "utf-8"
-
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/London
 future:      true
-highlighter: rouge
-markdown:    redcarpet
+highlighter: pygments
+markdown:    kramdown
 
 kramdown:
   auto_ids: true
