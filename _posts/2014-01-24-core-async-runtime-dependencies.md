@@ -15,7 +15,7 @@ One of the main issues I came across was that when `require`ing `core.async` pul
 My initial solution was to set `ioc-macros` to `^{:skip-aot true}` in the namespace form, but its dependencies on tools.analyzer were still loading. Then I tried moving the require to compile time so that it wouldn't resolve at run time at all:
 
 
-{% highlight clj %}
+{% highlight clojure %}
 (defmacro ignore-me-if-aotd [] 
   (require '[clojure.tools.analyzer :as an]
            '[clojure.tools.analyzer.ast :as ast]
