@@ -54,6 +54,18 @@ My initial solution was to set `ioc-macros` to `^{:skip-aot true}` in the namesp
 (ignore-me-if-aotd)
 ~~~
 
+{% highlight css %}
+#container {
+    float: left;
+    margin: 0 -240px 0 0;
+    width: 100%;
+}
+{% endhighlight %}
+
+{% highlight clojure %}
+(defn this [] )
+{% endhighlight %}
+
 And this did the trick. The code compiles no problem and doesn't even generate class files for tools.analyzer and its transitive dependencies.
 
 # Issues
