@@ -3,6 +3,7 @@ layout: post-no-feature
 title: "Quicker core.async bootstrapping"
 description: "Finding out why core.async adds 10s to my application's bootstrap time and how to remedy it"
 category: articles
+comments: true
 tags: [clojure, coreasync, programming]
 ---
 
