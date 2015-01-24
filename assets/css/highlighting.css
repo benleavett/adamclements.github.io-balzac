@@ -3,3 +3,14 @@
 .highlight span {
     line-height:1.5;
 }
+
+p > code {
+    color: #dcdccc;
+    font-family: "Monaco", "Courier New", "Courier";
+    font-size: .80em;
+    font-weight: bold;
+    background: #3b3b3b;
+    border-radius: 4px;
+    padding: 4px;
+    white-space: nowrap;
+}
