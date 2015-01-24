@@ -3,6 +3,8 @@ tagline:          λ
 description:      Functional programming blog
 canonical: http://adamclements.github.io
 
+rouge: true
+
 # Owner/author information
 owner:
   name:           Adam Clements
