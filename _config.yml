@@ -3,12 +3,14 @@ tagline:          λ
 description:      Functional programming blog
 canonical: http://adamclements.github.io
 
+comments: true
+
 # Owner/author information
 owner:
   name:           Adam Clements
   avatar:         avatar.png
   bio:            "TBD"
-#  email:          adam.clements@gmail.com
+  email:          adam.clements@gmail.com
   twitter:        AdamPClements
   github:         AdamClements
   disqus:         adamclementsblog
