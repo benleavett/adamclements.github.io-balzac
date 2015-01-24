@@ -11,7 +11,7 @@ owner:
 #  email:          adam.clements@gmail.com
   twitter:        AdamPClements
   github:         AdamClements
-  disqus:         adamclements1
+  disqus:         adamclementsblog
   location:       "London, UK"
   # Plug in your disqus shortname!
 
@@ -46,7 +46,7 @@ kramdown:
     coderay_line_numbers_start: 1
     coderay_tab_width: 4
     coderay_bold_every: 10
-    coderay_css: class
+    coderay_css: style
 
 sass:
     style: :compressed
