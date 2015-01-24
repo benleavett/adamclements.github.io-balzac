@@ -13,8 +13,6 @@ owner:
 #  email:          adam.clements@gmail.com
   twitter:        AdamPClements
   github:         AdamClements
-#  instagram:      ctrunsthis
-#  dribbble:       coletownsend
   disqus:         adamclements1
   location:       "London, UK"
   # Plug in your disqus shortname!
@@ -35,7 +33,7 @@ links:
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/London
 future:      true
-highlighter: rouge
+highlighter: pygments
 markdown:    kramdown
 
 kramdown:
@@ -43,7 +41,7 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
+  use_coderay: true
 
   coderay:
     coderay_line_numbers:
