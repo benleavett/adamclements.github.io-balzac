@@ -7,15 +7,7 @@ comments: true
 tags: [clojure, webview, clarity, programming]
 ---
 
-## Context
-
-This is the first post of many on the subject of **Clarity** [(Google Play)](https://play.google.com/store/apps/details?id=com.swiftkey.clarity.keyboard&referrer=utm_source%3Dadamblog%26utm_medium%3Dblog%26utm_content%3Dprogrammingpost), a new keyboard brought out by SwiftKey (my employer) as part of our [Greenhouse](http://swiftkey.com/en/greenhouse/) initiative to get internal experiments out in the world and in people's hands. I'm the tech lead and [Ben Leavett](http://benleavett.github.io/) is the Product Manager. It's pretty exciting tech for a number of reasons - one of which is the fact that it is written using [Clojure](clojure.org).
-
 This week, here at [SwiftKey](http://swiftkey.com), we released [Clarity Keyboard Beta](https://play.google.com/store/apps/details?id=com.swiftkey.clarity.keyboard&referrer=utm_source%3Dadamblog%26utm_medium%3Dblog%26utm_content%3Dprogrammingpost) - an experimental keyboard that we'll be using to test out some new keyboard concepts over the coming few weeks and months. It's been built from the ground up and uses a host of bleeding-edge technologies as well as an interesting and unusual choice of programming language: Clojure.
-
-<a href="https://play.google.com/store/apps/details?id=com.swiftkey.clarity.keyboard">
-<img alt="Get it on Google Play" style="width:150px" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
-</a>
 
 ## What is Clojure?
 [Clojure](http://clojure.org/) is a functional programming language that, like Java, targets the JVM. 
@@ -28,27 +20,44 @@ I won't list the many other benefits of using Clojure here - you can read a more
 
 As a result of all of this Clojure has tended to be found being used to build server infrastructure where a long initial load time is a reasonable tradeoff for its other benefits. It has rarely, if ever, been used to build consumer mobile applications.
 
+## Clojure on Android! (not all roses)
 
-## Pros & Cons
+### Build tools
 
 Unfortunately, Android support isn't quite that simple. All of the Android build tools assume that you are using standard Java, in a standard IDE, and that you won't wander too far from the beaten path. 
 
-Luckily for me, Daniel Solano Gomez and Alexander Yakushev among others have done most of the hard work for me already as part of the [clojure android](clojure-android.info) group on GitHub. This includes lein-droid, a plug-in for the leiningen build system which deals with turning clojure code into an apk, packaging resources etc. and a special build of clojure which can actually generate android dalvik byte code at runtime, allowing for the dynamic behaviour mentioned above. 
+Luckily for us, Daniel Solano Gomez and Alexander Yakushev among others have done most of the hard work for me already as part of the [clojure android](clojure-android.info) group on GitHub. This includes lein-droid, a plug-in for the leiningen build system which deals with turning clojure code into an apk, packaging resources etc. and a special build of clojure which can actually generate android dalvik byte code at runtime, allowing for the dynamic behaviour mentioned above.
 
-## REPL!
-Read, Evaluate, Print, Loop - LISP talk for being able to tweak your program on the fly. This really helps with the development - especially when making subtle changes to the user experience. Someone can be using the keyboard, spot something wrong and change it to try the new value without even hiding the keyboard from the screen!
+Having said this, when looking to make a production-quality app, there were some aspects which simply hadn't been covered before and so some tool support was missing for simple things like version code generation, bundling of native libraries, Proguard optimisation and Multi-dex (which allows you to have more than 65000 method references). lein-droid is open source and clojure is easy to read though, so it was perfectly possible to add these features and push them upstream so that they are now part of the official version.
 
-## WebView UI
-The same goes for theme design. It's really powerful being able to see changes that you make live as you make them, and that leads to quicker development and a better end product!
+### The unbeaten path
 
-## core.async
-Based on CSP - this means that everything is asynchronous from the ground up but also responsive
+Clojure ART issues, synchronisation bug, load times? skummet?.
 
-
-### Clojure on mobile!
 
 As you might expect, the issue of the long load time was the biggest barrier to using Clojure to build a mobile application. How long would you wait for an application to load on your mobile phone before thinking it's crashed? However with the help of the key contributors to some of the open-source libraries we're using we've reached a point where using Clojure to build a mobile application in production is absolutely feasible. Clarity Keyboard's initial loading time is around 1.5-2 seconds and there are still a number of improvements we plan to make to get this down well below a second.
 
+### REPL!
+
+Read, Evaluate, Print, Loop - LISP talk for being able to tweak your program on the fly. This really helps with the development - especially when making subtle changes to the user experience. Someone can be using the keyboard, spot something wrong and change it to try the new value without even hiding the keyboard from the screen!
+
+## Design decisions made/influenced by Clojure
+
+### core.async
+
+Based on CSP - this means that everything is asynchronous from the ground up but also responsive
+
+### Event Driven
+
+### Modular
+
+
 *We'll be publishing more detailed posts about our experience building mobile applications in Clojure on Android; technologies we've used such as [test.check](https://github.com/clojure/test.check), [Clojure on Android](http://clojure-android.info/) and [core.async](https://github.com/clojure/core.async); REPL-driven development; Clojure itself and the Clarity project over the next few weeks and months. If this interests you let us know and we'll write more!*
 
-[Clarity Keyboard Beta](https://play.google.com/store/apps/details?id=com.swiftkey.clarity.keyboard&referrer=utm_source%3Dadamblog%26utm_medium%3Dblog%26utm_content%3Dprogrammingpost) is available on the Google Play store now - try it out and let us know what you think.
+Clarity Keyboard Beta is available on the Google Play store now - try it out and let us know what you think.
+
+<a href="https://play.google.com/store/apps/details?id=com.swiftkey.clarity.keyboard&referrer=utm_source%3Dadamblog%26utm_medium%3Dblog%26utm_content%3Dprogrammingpost">
+<img alt="Get it on Google Play" style="width:150px" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
+
+
