@@ -56,14 +56,34 @@ Clojure ART issues, synchronisation bug, load times? skummet?.
 
 ## Design decisions made/influenced by Clojure
 
-### core.async
-
-Based on CSP - this means that everything is asynchronous from the ground up but also responsive
-
 ### Event Driven
+In Clarity, everything that happens in the system is an "event" expressed as pure data, namely a clojure map. No modules can do or react to anything if it isn't broadcast as data in an event.
+
+{% highlight clojure %}
+{:type :start-input :editor {:type :plain :action :send}}
+{:type :touch :touches [[0.12 0.43 12332]] :action :down}
+{:type :touch :touches [[0.12 0.43 12332] [0.13 0.43 12333]] :action :up}
+{% endhighlight %}
+
+The fact that everything is data means that we can really easily see everything that's happening in the system when debugging - simply print out the event stream as things pass through it! It also means that if we want to test a system in isolation, it's trivial to spin up only that system and simply inject the events that it expects. All application configuration is simply done by appending a `:persist :true`  key to **any** event which simply indicates that the settings module should store that particular event and replay it on application startup.
+
+This is all made possible by persistent immutable data structures in clojure. You can happily send the events off to as many receivers as you want and know that the operation of one cannot change the copy that another sees. It also means that we can broadcast for example every time a new sample is added to a touch trace, **without** creating an entirely new list, it will share structure with the previously emitted touch event but without changing it for any modules that are still processing it.
+
+In practice this is really powerful and leads to excellent modularity
 
 ### Modular
 
+Because all subsystems only care about events in/out, and don't care at all about where those events come from or where they go to, it's absolutely trivial to replace whole subsystems or add new ones, without breaking what's already there! It also means practically no conflicts when merging feature branches, because each new feature can be implemented in isolation. This has the added benefit that if you're not sure about a feature, you can simply keep the old feature code but not activate it (and it will get stripped out in the build step). By making sure everything considers the fact that there may be multiple receivers for their events, it's easy and encouraged to keep everything nice and generic, so you don't end up with spaghetti code mess.
+
+The fact that everything is nice and modular makes things very very easy to test. You can simply fire events in one side of a module and check that the appropriate events come out the other side. Or spin up a couple of modules and fire events in to check that they interact with one another as expected. This combined with [test.check](https://github.com/clojure/test.check) to generate all sorts of unforeseen properties of the incoming events and check that various properties hold true have made testing a breeze. We will probably post again in the future about our testing setup.
+
+### core.async
+
+Given that we have immutable, persistent data and many largely independent modules, it makes sense to make everything asynchronous by default. [core.async](https://github.com/clojure/core.async) was an excellent fit for us as it allowed us to set up our central stream of events totally asynchronously but in such a way that we can guarantee ordering of events (i.e. if a `:change-layout` event happens followed by a `:touch` event they are guaranteed to arrive that way round, even if some other module is being really slow processing `:change-layout` events).
+
+While it's really powerful, and beats using threading primitives hands down, it is still asynchronous code, and asynchronous code is always hard to reason about and even harder to test! In practice, our unit tests tend not to spin up modules using core.async, but instead feed lists of events through the module using [transducers](http://clojure.org/transducers) where possible, and get a simple list out the other side.
+
+## Conclusion
 
 *We'll be publishing more detailed posts about our experience building mobile applications in Clojure on Android; technologies we've used such as [test.check](https://github.com/clojure/test.check), [Clojure on Android](http://clojure-android.info/) and [core.async](https://github.com/clojure/core.async); REPL-driven development; Clojure itself and the Clarity project over the next few weeks and months. If this interests you let us know and we'll write more!*
 
