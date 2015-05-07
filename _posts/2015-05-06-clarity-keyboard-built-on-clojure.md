@@ -26,11 +26,11 @@ As you might expect, the issue of the long load time was the biggest barrier to 
 
 ### Development tools
 
-We're using a fairly typical Clojure development setup here: Emacs; cider... TODO-ADAM Nothing really Android-specific and pretty standard stuff for Clojure developers.
+We're using a fairly typical Clojure development setup here - nothing Android-specific and pretty standard stuff for Clojure developers: Emacs + cider.
 
 One of the most powerful tools this setups offers us though - which for us was a revelation when we first tried this on Android a year or so ago - was the Clojure REPL **on Android**!
 
-#### REPL!
+#### The Clojure REPL
 
 REPL stands for *Read, Evaluate, Print, Loop* - an environment in which you can tweak your program on the fly without re-compiling and re-installing (a process that can take several minutes). The Clojure REPL has been especially valuable for us while working on Clarity Keyboard, in particular when making subtle changes to the user experience, and has made a big difference to our development speed.
 
