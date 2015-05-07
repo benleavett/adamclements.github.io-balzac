@@ -1,21 +1,21 @@
-title:            Balzac
-tagline:          A beautiful theme.
-description:      Describe your website.
-canonical: http://jekyll.gtat.me
+title:            AdamClements
+tagline:          λ
+description:      Functional programming blog
+canonical: http://adamclements.github.io
 
 # Owner/author information
 owner:
-  name:           Cole Townsend
+  name:           Adam Clements
   avatar:         avatar.png
-  bio:            "Aesthete & Athlete"
-  email:          cole@coletownsend.com
-  twitter:        twnsndco
-  github:         coletownsend
-  instagram:      ctrunsthis
-  dribbble:       coletownsend
-  disqus:         balzac
-  location:       "Buffalo, NY"
+  bio:            "TBD"
+  email:          adam.clements@gmail.com
+  twitter:        AdamPClements
+  github:         AdamClements
+  disqus:         adamclementsblog
+  location:       "London, UK"
   # Plug in your disqus shortname!
+
+analytics_id: UA-58933206-1
 
 tools:
   standards:      "HTML, SCSS, Jekyll"
@@ -27,14 +27,11 @@ links:
   - title: About
     url: /about
   - title: Github
-    url: https://github.com/ColeTownsend/Balzac-for-Jekyll
-    external: true
-  - title: Cole Who?
-    url: http://coletownsend.com
+    url: https://github.com/AdamClements/
     external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
+timezone:    Europe/London
 future:      true
 highlighter: pygments
 markdown:    kramdown
@@ -45,13 +42,6 @@ kramdown:
   entity_output: as_char
   toc_levels: 1..6
   use_coderay: false
-
-  coderay:
-    coderay_line_numbers:
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
 
 sass:
     style: :compressed
